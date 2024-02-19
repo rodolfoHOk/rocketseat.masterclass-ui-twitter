@@ -1,4 +1,3 @@
-import twitterLogo from './assets/logo-twitter.svg';
 import {
   Bell,
   BookmarkSimple,
@@ -10,6 +9,8 @@ import {
   Sparkle,
   User,
 } from '@phosphor-icons/react';
+import twitterLogo from './assets/logo-twitter.svg';
+import { Tweet } from './components/tweet';
 
 export function App() {
   return (
@@ -81,6 +82,14 @@ export function App() {
           </form>
 
           <div className="separator"></div>
+
+          <Tweet />
+
+          <Tweet />
+
+          <Tweet />
+
+          <Tweet />
         </main>
       </div>
     </div>
