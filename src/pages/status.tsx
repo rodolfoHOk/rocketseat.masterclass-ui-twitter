@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent,
+  useEffect,
+  useState,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidV4 } from 'uuid';
 import { Header } from '../components/header';
@@ -68,8 +74,7 @@ export function Status() {
     setNewAnswerContent(event.target.value);
   }
 
-  async function createNewAnswer(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function saveAnswer() {
     if (currentUser && newAnswerContent.trim().length > 0 && tweet) {
       const newAnswer: AnswerModel = {
         id: uuidV4(),
@@ -83,6 +88,17 @@ export function Status() {
       await ServicesFactory.getAnswerService().addTweetAnswer(newAnswer);
       setAnswers((previousState) => [newAnswer, ...previousState]);
       setNewAnswerContent('');
+    }
+  }
+
+  async function createNewAnswer(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await saveAnswer();
+  }
+
+  async function handleHotkeySubmit(event: KeyboardEvent) {
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+      await saveAnswer();
     }
   }
 
@@ -102,6 +118,7 @@ export function Status() {
             placeholder="Tweet your answer"
             value={newAnswerContent}
             onChange={handleAnswerContent}
+            onKeyDown={handleHotkeySubmit}
           />
         </label>
 

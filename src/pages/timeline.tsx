@@ -1,4 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  KeyboardEvent,
+  useEffect,
+  useState,
+} from 'react';
 import { v4 as uuidV4 } from 'uuid';
 import { Header } from '../components/header';
 import { Tweet } from '../components/tweet';
@@ -40,8 +46,7 @@ export function Timeline() {
     setNewTweetContent(event.target.value);
   }
 
-  async function createNewTweet(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function saveTweet() {
     if (currentUser && newTweetContent.trim().length > 0) {
       const newTweet: TweetModel = {
         id: uuidV4(),
@@ -57,6 +62,17 @@ export function Timeline() {
     }
   }
 
+  async function createNewTweet(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    await saveTweet();
+  }
+
+  async function handleHotkeySubmit(event: KeyboardEvent) {
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+      await saveTweet();
+    }
+  }
+
   return (
     <main className="timeline">
       <Header title="Home" />
@@ -69,6 +85,7 @@ export function Timeline() {
             placeholder="What's happening?"
             value={newTweetContent}
             onChange={handleTweetContent}
+            onKeyDown={handleHotkeySubmit}
           />
         </label>
 
