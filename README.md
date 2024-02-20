@@ -30,6 +30,10 @@
 2.  Compara essa nova versão com a versão anterior do HTML (Diff)
 3.  Aplicar as operações JavaScript para alterar somente o necessário no HTML
 
+## Figma Design
+
+- https://www.figma.com/community/file/1202694130789327431
+
 ## Rodar
 
 ### Requisitos
