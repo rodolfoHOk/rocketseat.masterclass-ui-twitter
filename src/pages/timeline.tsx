@@ -1,11 +1,12 @@
-import { Sidebar } from './components/sidebar';
-import { Header } from './components/header';
-import { Tweet } from './components/tweet';
-import { Separator } from './components/separator';
-import { TweetModel } from './models/tweet';
-import { User } from './models/user';
+import { Sidebar } from '../components/sidebar';
+import { Header } from '../components/header';
+import { Tweet } from '../components/tweet';
+import { Separator } from '../components/separator';
+import { TweetModel } from '../models/tweet';
+import { User } from '../models/user';
+import './timeline.css';
 
-export function App() {
+export function Timeline() {
   const currentUser: User = {
     name: 'Usuária anônima',
     username: '@user',

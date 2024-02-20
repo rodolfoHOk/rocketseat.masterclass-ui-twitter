@@ -7,6 +7,14 @@
 - Typescript / Javascript
 - React.Js / Vite.Js
 
+### Bibliotecas adicionais
+
+- @phosphor-icons/react
+- react-router-dom
+- localforage
+- match-sorter
+- sort-by
+
 ## Rodar
 
 ### Requisitos
@@ -17,5 +25,3 @@
 
 - npm install
 - npm run dev
-
-#### Break 2:23:15
