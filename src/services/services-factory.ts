@@ -7,14 +7,16 @@ export class ServicesFactory {
 
   public static getUserService() {
     if (!this.userService) {
-      return new UserService();
+      this.userService = new UserService();
+      return this.userService;
     }
     return this.userService;
   }
 
   public static getTweetService() {
     if (!this.tweetService) {
-      return new TweetService();
+      this.tweetService = new TweetService();
+      return this.tweetService;
     }
     return this.tweetService;
   }

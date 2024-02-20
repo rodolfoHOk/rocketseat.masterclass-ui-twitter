@@ -1,4 +1,4 @@
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Header } from '../components/header';
 import { Separator } from '../components/separator';
 import { Tweet } from '../components/tweet';
@@ -11,16 +11,14 @@ export function Status() {
   const { tweetId } = useParams();
 
   if (!tweetId) {
-    redirect('/');
-    return;
+    return <span>Tweet not found 404</span>;
   }
 
   const tweet: TweetModel | undefined =
     ServicesFactory.getTweetService().getTweet(tweetId);
 
   if (!tweet) {
-    redirect('/');
-    return;
+    return <span>Tweet not found 404</span>;
   }
 
   const answers: TweetModel[] =

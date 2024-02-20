@@ -127,4 +127,8 @@ export class TweetService {
   public getTweet(tweetId: string): TweetModel | undefined {
     return this.tweets.find((tweet) => tweet.id === tweetId);
   }
+
+  public addTweet(tweet: TweetModel) {
+    this.tweets.unshift(tweet);
+  }
 }
