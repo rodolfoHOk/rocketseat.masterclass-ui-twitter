@@ -74,54 +74,8 @@ export class TweetService {
     },
   ];
 
-  private tweetAnswers: TweetModel[] = [
-    {
-      id: 'c8198c3b-1790-4376-9127-a911a0169117',
-      user: {
-        name: 'Angela Arden',
-        username: '@angela_arden',
-        image_url: 'http://localhost:5173/@angela_arden.png',
-      },
-      content: `Concordo...`,
-      comments: 0,
-      retweets: 0,
-      likes: 2,
-    },
-    {
-      id: '8d49dc18-1296-49b0-a3f4-19bdc34c13ce',
-      user: {
-        name: 'Julia Stone',
-        username: '@julia',
-        image_url: 'http://localhost:5173/@julia.png',
-      },
-      content: `Olha, faz sentido!`,
-      comments: 1,
-      retweets: 0,
-      likes: 1,
-    },
-    {
-      id: '798c847f-075b-47f9-ae6a-08853b4be5ff',
-      user: {
-        name: 'Joey Tribiani',
-        username: '@joey',
-        image_url: 'http://localhost:5173/@joey.png',
-      },
-      content: `Parabéns pelo progresso!`,
-      comments: 0,
-      retweets: 0,
-      likes: 3,
-    },
-  ];
-
   public listTweets(): Promise<TweetModel[]> {
     return Promise.resolve([...this.tweets]);
-  }
-
-  public getTweetAnswers(tweetId: string): Promise<TweetModel[]> {
-    if (tweetId.length === 36) {
-      return Promise.resolve([...this.tweetAnswers]);
-    }
-    return Promise.resolve([]);
   }
 
   public getTweet(tweetId: string): Promise<TweetModel | undefined> {
