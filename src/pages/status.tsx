@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Header } from '../components/header';
 import { Separator } from '../components/separator';
@@ -9,23 +10,56 @@ import './status.css';
 
 export function Status() {
   const { tweetId } = useParams();
+  const [tweet, setTweet] = useState<TweetModel | undefined>(undefined);
+  const [answers, setAnswers] = useState<TweetModel[]>([]);
+  const [currentUser, setCurrentUser] = useState<UserModel | undefined>(
+    undefined
+  );
+
+  async function fetchTweet(tweetId: string) {
+    const tweet = await ServicesFactory.getTweetService().getTweet(tweetId);
+    setTweet(tweet);
+  }
+
+  useEffect(() => {
+    if (tweetId) {
+      fetchTweet(tweetId);
+    }
+  }, [tweetId]);
+
+  async function fetchAnswers(tweetId: string) {
+    const initialAnswers: TweetModel[] =
+      await ServicesFactory.getTweetService().getTweetAnswers(tweetId);
+    setAnswers(initialAnswers);
+  }
+
+  useEffect(() => {
+    if (tweetId) {
+      fetchAnswers(tweetId);
+    }
+  }, [tweetId]);
+
+  async function fetchCurrentUser() {
+    const data: UserModel =
+      await ServicesFactory.getUserService().getCurrentUser();
+    setCurrentUser(data);
+  }
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
 
   if (!tweetId) {
     return <span>Tweet not found 404</span>;
   }
 
-  const tweet: TweetModel | undefined =
-    ServicesFactory.getTweetService().getTweet(tweetId);
-
   if (!tweet) {
     return <span>Tweet not found 404</span>;
   }
 
-  const answers: TweetModel[] =
-    ServicesFactory.getTweetService().getTweetAnswers(tweetId);
-
-  const currentUser: UserModel =
-    ServicesFactory.getUserService().getCurrentUser();
+  if (!currentUser) {
+    return <span>Loading current user</span>;
+  }
 
   return (
     <main className="status">

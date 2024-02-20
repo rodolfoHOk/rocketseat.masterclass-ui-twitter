@@ -113,22 +113,23 @@ export class TweetService {
     },
   ];
 
-  public listTweets(): TweetModel[] {
-    return this.tweets;
+  public listTweets(): Promise<TweetModel[]> {
+    return Promise.resolve([...this.tweets]);
   }
 
-  public getTweetAnswers(tweetId: string): TweetModel[] {
+  public getTweetAnswers(tweetId: string): Promise<TweetModel[]> {
     if (tweetId.length === 36) {
-      return this.tweetAnswers;
+      return Promise.resolve([...this.tweetAnswers]);
     }
-    return [];
+    return Promise.resolve([]);
   }
 
-  public getTweet(tweetId: string): TweetModel | undefined {
-    return this.tweets.find((tweet) => tweet.id === tweetId);
+  public getTweet(tweetId: string): Promise<TweetModel | undefined> {
+    return Promise.resolve(this.tweets.find((tweet) => tweet.id === tweetId));
   }
 
-  public addTweet(tweet: TweetModel) {
+  public addTweet(tweet: TweetModel): Promise<void> {
     this.tweets.unshift(tweet);
+    return Promise.resolve();
   }
 }
