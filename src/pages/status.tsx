@@ -15,6 +15,7 @@ import { UserModel } from '../models/user';
 import { AnswerModel } from '../models/answer';
 import { ServicesFactory } from '../services/services-factory';
 import './status.css';
+import { PaperPlaneRight } from '@phosphor-icons/react';
 
 export function Status() {
   const { tweetId } = useParams();
@@ -122,7 +123,10 @@ export function Status() {
           />
         </label>
 
-        <button type="submit">Answer</button>
+        <button type="submit">
+          <PaperPlaneRight />
+          <span>Answer</span>
+        </button>
       </form>
 
       {answers.map((answer, index) => (

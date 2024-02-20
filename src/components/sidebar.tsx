@@ -7,6 +7,7 @@ import {
   FileText,
   Hash,
   House,
+  Pencil,
   User,
 } from '@phosphor-icons/react';
 import twitterLogo from '../assets/logo-twitter.svg';
@@ -60,7 +61,8 @@ export function Sidebar() {
       </nav>
 
       <button className="new-tweet" type="button">
-        Tweet
+        <Pencil />
+        <span>Tweet</span>
       </button>
     </aside>
   );
