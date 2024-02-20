@@ -1,7 +1,8 @@
-import { User } from './user';
+import { UserModel } from './user';
 
 export interface TweetModel {
-  user: User;
+  id: string;
+  user: UserModel;
   content: string;
   comments: number;
   retweets: number;

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import {
   Bell,
   BookmarkSimple,
@@ -17,10 +18,10 @@ export function Sidebar() {
       <img className="logo" src={twitterLogo} alt="Logo" />
 
       <nav className="main-navigation">
-        <a className="active" href="">
+        <NavLink className="active" to="/">
           <House weight="fill" />
           <span>Home</span>
-        </a>
+        </NavLink>
 
         <a href="">
           <Hash />
